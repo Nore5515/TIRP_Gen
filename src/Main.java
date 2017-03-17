@@ -1,5 +1,3 @@
-package com.funtimes.TIRP;
-
 import java.util.Random;
 import java.util.Scanner;
 import java.io.*;
@@ -15,7 +13,7 @@ public class Main{
         System.out.println("What’s the issue?");
         System.out.println("1 - NPC QUICK");
         System.out.println("2 - im stuck rip fam");
-        System.out.println("3 - How the hell do you even get started");
+        System.out.println("3 - How the <heck> do you even get started");
         System.out.println("4 - Where are I");
         int mainIn = reader.nextInt();
 
@@ -65,10 +63,24 @@ public class Main{
         rd.close();
         String soulFace = result.toString();
         soulFace = soulFace.replaceAll("\\s+","");
-        System.out.println(soulFace);
+        int loc = soulFace.indexOf("<olclass=");
+        soulFace = soulFace.substring(loc);
+        soulFace = soulFace.substring(24);
+        loc = soulFace.indexOf("<li>");
+        soulFace = soulFace.substring(0,loc);
+        for (int x = 0; x < soulFace.length(); x++){
+            if (Character.isUpperCase(soulFace.charAt(x)) && x != 0){
+                loc = x;
+                x = soulFace.length() + 1;
+            }
+        }
+        String soul = soulFace.substring(0,loc);
+        String face = soulFace.substring(loc,soulFace.length());
+        soulFace = soul + " " + face;
+        //System.out.println(soulFace);
 
 
-        return "big loser";
+        return soulFace;
     }
 }
 
